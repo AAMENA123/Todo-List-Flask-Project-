@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+Add Your Todo
+{% endblock title %} 
+
+{% block body %}
+    <div class="container bg-light my-5" >
+        <div height ="50%" width="1000px" padding = "50px">
+        <center><h2>Add your Todos:</h2></center>
+
+        <form method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Todo Title :</label>
+                <input type="text" class="form-control" name="title" aria-describedby="emailHelp" >
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Todo Description :</label>
+                <input type="text" class="form-control" name="desc">
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </form>
+        </div>
+    </div>
+    <div class="container bg-light my-5">
+        {% if alltodos | length == 0 %}
+        <div class="alert alert-info" role="alert">
+            No Todos found. Add your first Todo
+        </div>
+        {% else %}
+       <center>  <h2>Your Todos:</h2>   </center>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for Todo in alltodos %}
+                <tr>
+                    <th scope="row"> {{loop.index}} </th>
+                    <td>{{Todo.title}}</td>
+                    <td>{{Todo.desc}}</td>
+                    <td>{{Todo.date_created}}</td>
+                    <td>{{Todo.date_created}}</td>
+                    <td> <a href="/delete/{{Todo.sno}}" class="btn btn-outline-primary btn-sm " role="button"
+                            aria-disabled="true">Delete</a>
+                    <td><a href="/update/{{Todo.sno}}" class="btn btn-outline-primary btn-sm mx-1" role="button"
+                            aria-disabled="true">Update</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+                {% endif %}
+
+            </tbody>
+        </table>
+
+    </div>
+{% endblock body %}
+
+
+    

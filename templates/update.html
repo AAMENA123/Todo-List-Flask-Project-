@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+Update your Todo
+{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <h2>Update your Todo:</h2>
+    <form action="/update/{{alltodo.sno}}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Todo Title :</label>
+            <input type="text" class="form-control" name="title" aria-describedby="emailHelp"
+                value= "{{ alltodo.title }}" >
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Todo Description :</label>
+            <input type="text" class="form-control" name="desc"  value= "{{ alltodo.desc }}" >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if a !="done" %}
+    <div class="container my-4">
+        <div class="alert alert-primary" role="alert">
+        Update your data at {{ alltodo.sno }}
+    </div>
+    </div>
+    
+    {% else %}
+    <div class="container my-4">
+        <div class="alert alert-success" role="alert">
+            Data updated successfully
+        </div>
+    </div>
+    {% endif %}
+
+    {% endblock  %}
